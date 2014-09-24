@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jwi
+Build-Jdk: 1.5.0_06
+Extension-Name: xmlrpc
+Specification-Title: Apache XML-RPC is a Java implementation of XML-RP
+ C, a popular protocol
+        that uses XML over HTTP to implement re
+ mote procedure calls.
+        Compared to SOAP, or JAX-RPC, it is sta
+ ble, much simpler and easier to
+        handle.
+Specification-Vendor: Apache Software Foundation
+Implementation-Vendor: Apache Software Foundation
+Implementation-Title: xmlrpc
+Implementation-Version: 2.0.1
+
