@@ -15,6 +15,7 @@ import java.util.Random;
 
 import org.bluej.delta.client.compile.CompilationLogger;
 import org.bluej.delta.client.invocation.InvocationLogger;
+import org.bluej.delta.client.shipper.ChirpHTMLShipper;
 import org.bluej.delta.client.shipper.Packet;
 import org.bluej.delta.client.shipper.Shipper;
 import org.bluej.delta.client.shipper.ShippingQueue;
@@ -250,7 +251,12 @@ public class DeltaMain extends Extension implements PackageListener
         String serverAddress = config.getProperty("server.address");
         try {
             shipper = (Shipper) Class.forName(className).newInstance();            
-            shipper.initialise(serverAddress);
+            
+            if (shipper instanceof ChirpHTMLShipper) {
+            	((ChirpHTMLShipper)shipper).initialise(serverAddress, config.getProperty("StudentName"), config.getProperty("StudentID"));
+            } else {
+            	shipper.initialise(serverAddress);	
+            }
             shippingQueue = new ShippingQueue(shipper);
             return true;
         }
@@ -356,6 +362,5 @@ public class DeltaMain extends Extension implements PackageListener
             e.printStackTrace();
         }
     }
-    
-
+ 
 }

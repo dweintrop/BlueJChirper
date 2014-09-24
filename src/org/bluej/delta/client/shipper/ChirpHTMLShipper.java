@@ -11,6 +11,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Vector;
 
 import org.bluej.delta.util.Debug;
@@ -21,9 +22,18 @@ import sun.net.www.protocol.http.HttpURLConnection;
 public class ChirpHTMLShipper implements Shipper {
 
 	private static URL url;
+	private static String studentName;
+	private static String studentID;
+	
+	public void initialise(String address, String studentName, String studentID) {
+		this.studentName = studentName;
+		this.studentID = studentID;
+		initialise(address);
+	}
 	
 	@Override
 	public void initialise(String address) {
+		
 		try {
 			url = new URL(address);
 		} catch (MalformedURLException e) {
@@ -38,6 +48,8 @@ public class ChirpHTMLShipper implements Shipper {
 		try {
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		
+		params.put("STUDENT_NAME", studentName);
+		params.put("STUDENT_ID", studentID);
 		
         for (Iterator iter = p.getData().iterator(); iter.hasNext();) {
             Pair pair = (Pair) iter.next();
